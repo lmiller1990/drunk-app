@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import Answer from './Answer'
 
 export default class Question extends React.Component {
   render() {
@@ -10,6 +11,12 @@ export default class Question extends React.Component {
         >
           {this.props.question.text}
         </Text>
+        { this.props.question.answers.map(x => 
+          <Answer 
+            key={x.id}  
+            answer={x}
+          />)
+        }
       </View>
     )
   }

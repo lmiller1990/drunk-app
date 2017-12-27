@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
-import { StyleSheet, Image, View } from 'react-native'
+import { StyleSheet, Image, View, TouchableHighlight } from 'react-native'
 
 export default class ImageAnswers extends Component {
   render() {
     return(
       <View style={styles.wrapper}>
         { this.props.answers.map(x =>
-          <Image 
+          <TouchableHighlight 
             key={x.id}
-            style={styles.image} 
-            source={x.source} 
-          />
+            onPress={() => this.props.selected(x.score)}
+          >
+            <Image 
+              style={styles.image} 
+              source={x.source} 
+            />
+          </TouchableHighlight>
         ) }
       </View>
     )
@@ -19,11 +23,14 @@ export default class ImageAnswers extends Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    flexWrap: 'wrap'
+    flex: 0,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   image: {
-    height: 50,
-    width: 50
+    height: 100,
+    width: 100,
+    margin: 2
   }
 })

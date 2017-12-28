@@ -1,9 +1,15 @@
 import React from 'react'
 import Scramble from '../components/Scramble'
+import ChooseTheColor from '../components/puzzles/ChooseTheColor/index'
 
 export default [
   {
     id: 0,
+    text: 'Select the color of the word from the pallet below:',
+    component: <ChooseTheColor />
+  },
+  {
+    id: 1,
     text: 'Keep your eye on the white tile, and press start.',
     component: <Scramble />
   },

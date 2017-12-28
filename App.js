@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, View, ScrollView } from 'react-native';
 import questions from './data/questions'
 import Question from './components/Question'
 import Swiper from 'react-native-swiper'
+import Scramble from './components/Scramble'
 
 Swiper.prototype.componentWillUpdate = (nextProps, nextState) => {
   swiperIndex = nextState.index
@@ -31,7 +32,7 @@ export default class App extends React.Component {
         {questions.map(x => 
           <Question 
             key={x.id}
-            question={x} 
+            question={x}
             selected={this.selected}
           />)}
       </Swiper>

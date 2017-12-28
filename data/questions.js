@@ -1,49 +1,14 @@
+import React from 'react'
+import Scramble from '../components/Scramble'
+
 export default [
   {
-    id: 1,
-    text: 'Which food item looks most delicious?',
-    answerType: 'image',
-    answers: [
-      {
-        id: 0,
-        text: 'Cake',
-        source: require('./images/cake.jpeg'),
-        type: 'image'
-      },
-      {
-        id: 1,
-        text: 'Coffee',
-        source: require('./images/coffee.jpeg'),
-        type: 'image'
-      },
-      {
-        id: 2,
-        text: 'Strawberry',
-        source: require('./images/strawberry.jpeg'),
-        type: 'image'
-      },
-      {
-        id: 3,
-        text: 'Sandwich',
-        source: require('./images/sandwich.jpeg'),
-        type: 'image'
-      },
-      {
-        id: 4,
-        text: 'Fish',
-        source: require('./images/fish.jpeg'),
-        type: 'image'
-      },
-      {
-        id: 5,
-        text: 'Cow',
-        source: require('./images/cow.jpeg'),
-        type: 'image'
-      }
-    ]
-  },
-  {
     id: 0,
+    text: 'Keep your eye on the white tile, and press start.',
+    component: <Scramble />
+  },
+  /*{
+    id: 1,
     text: 'Which of the following sounds like a great idea?',
     answerType: 'text',
     answers: [
@@ -95,5 +60,101 @@ export default [
         score: 4
       }
     ]
-  }
+  },
+  {
+    id: 3,
+    text: 'Question',
+    answerType: 'text',
+    answers: [
+      {
+        id: 0,
+        text: 'Cake',
+        score: 1
+      }
+    ]
+  },
+  {
+    id: 4,
+    text: 'Question',
+    answerType: 'text',
+    answers: [
+      {
+        id: 0,
+        text: 'Answer',
+        score: 1
+      }
+    ]
+  },
+  {
+    id: 5,
+    text: 'Question',
+    answerType: 'text',
+    answers: [
+      {
+        id: 0,
+        text: 'Answer',
+        score: 1
+      }
+    ]
+  },
+  {
+    id: 6,
+    text: 'Question',
+    answerType: 'text',
+    answers: [
+      {
+        id: 0,
+        text: 'Answer',
+        score: 1
+      }
+    ]
+  },
+  {
+    id: 7,
+    text: 'Question',
+    answerType: 'text',
+    answers: [
+      {
+        id: 0,
+        text: 'Answer',
+        score: 1
+      }
+    ]
+  },
+  {
+    id: 8,
+    text: 'Question',
+    answerType: 'text',
+    answers: [
+      {
+        id: 0,
+        text: 'Answer',
+        score: 1
+      }
+    ]
+  },
+  {
+    id: 9,
+    text: 'Question',
+    answerType: 'text',
+    answers: [
+      {
+        id: 0,
+        text: 'Answer',
+        score: 1
+      }
+    ]
+  },
+  {
+    id: 10,
+    text: 'Question',
+    answerType: 'text',
+    answers: [
+      {
+        id: 0,
+        text: 'Answer',
+        score: 1
+      }
+    ]
+  }*/
 ]

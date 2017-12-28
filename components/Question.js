@@ -11,7 +11,8 @@ export default class Question extends React.Component {
           <Text style={styles.question}>{this.props.question.text}</Text>
         </View>
         <View style={styles.container}>
-        { this.props.question.answerType === 'text'
+          {this.props.question.component} 
+          { /*this.props.question.answerType === 'text'
           ? <TextAnswers 
               answers={this.props.question.answers} 
               selected={this.props.selected}
@@ -20,7 +21,7 @@ export default class Question extends React.Component {
               answers={this.props.question.answers} 
               selected={this.props.selected}
             />
-        }
+            */ }
         </View>
       </View>
     )

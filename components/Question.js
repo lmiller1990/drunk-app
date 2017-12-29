@@ -1,27 +1,24 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import TextAnswers from './TextAnswers'
-import ImageAnswers from './ImageAnswers'
+import BasicMath from './puzzles/basic-math/index'
+import ChooseTheColor from './puzzles/ChooseTheColor'
 
 export default class Question extends React.Component {
   render() {
+    const puzzles = {
+      BasicMath,
+      ChooseTheColor
+    }
+
+    const Puzzle = puzzles[this.props.question.tag]
+    const el = <Puzzle addScore={this.props.addScore} />
     return (
       <View style={styles.wrapper}>
         <View>
           <Text style={styles.question}>{this.props.question.text}</Text>
         </View>
         <View style={styles.container}>
-          {this.props.question.component} 
-          { /*this.props.question.answerType === 'text'
-          ? <TextAnswers 
-              answers={this.props.question.answers} 
-              selected={this.props.selected}
-          />
-          : <ImageAnswers 
-              answers={this.props.question.answers} 
-              selected={this.props.selected}
-            />
-            */ }
+          {el}
         </View>
       </View>
     )

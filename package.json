@@ -23,6 +23,8 @@
     "lodash": "^4.17.4",
     "react": "16.0.0",
     "react-native": "0.50.3",
-    "react-native-swiper": "^1.5.13"
+    "react-native-console-time-polyfill": "^0.0.6",
+    "react-native-swiper": "^1.5.13",
+    "react-timer-mixin": "^0.13.3"
   }
 }

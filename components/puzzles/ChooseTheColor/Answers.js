@@ -21,7 +21,7 @@ export default class Answers extends React.Component {
       <View style={styles.wrapper}>
         {this.props.answers.map(x =>
           <TouchableHighlight 
-            onPress={() => this.props.selected(x)}
+            onPress={() => this.props.selected()}
             key={x}
           >
             <View style={this.answerStyle(x)}>

@@ -17,13 +17,14 @@ export default class App extends React.Component {
       score: 0
     }
     this.swiper = Object
-    this.selected = this.selected.bind(this)
+    this.addScore = this.addScore.bind(this)
   }
 
 
-  selected(score) {
+  addScore(score) {
     this.setState({ score: this.state.score += score })
-    this.swiper.scrollBy(1, true)
+    console.log(this.state.score)
+    // this.swiper.scrollBy(1, true)
   }
 
   render() {
@@ -33,7 +34,7 @@ export default class App extends React.Component {
           <Question 
             key={x.id}
             question={x}
-            selected={this.selected}
+            addScore={this.addScore}
           />)}
       </Swiper>
     )

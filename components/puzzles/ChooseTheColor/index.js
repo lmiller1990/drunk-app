@@ -26,6 +26,10 @@ export default class ChooseColors extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    console.log('Updated Color chooser')
+  }
+
   handleSelected(color) {
     if (this.state.colors.indexOf(color) === this.state.answer)
       this.setState({ score: this.state.score += 1 })

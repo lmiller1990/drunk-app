@@ -1,6 +1,6 @@
 import React from 'react'
 import Scramble from '../components/Scramble'
-import ChooseTheColor from '../components/puzzles/ChooseTheColor/index'
+import ChooseTheColor from '../components/puzzles/ChooseTheColor'
 
 export default [
   {

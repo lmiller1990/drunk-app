@@ -1,18 +1,43 @@
 import React from 'react'
 import { StyleSheet, View, Text, TouchableHighlight } from 'react-native'
-import colors from './colors'
 import chunk from 'lodash/chunk'
 import shuffle from 'lodash/shuffle'
+import colors from './colors'
+import Answers from './Answers'
+
+const chunkSize = 6
 
 export default class ChooseColors extends React.Component {
   constructor(props) {
     super(props)
-    const chunkSize = 4
-    const ranColors = shuffle(colors)
 
     this.state = {
-      colors: chunk(ranColors, chunkSize)[0],
-      answer: Math.floor(Math.random() * chunkSize)
+      ...this.resetPuzzle(),
+      score: 0
+    }
+    this.handleSelected = this.handleSelected.bind(this)
+    this.answerStyle = this.answerStyle.bind(this)
+  }
+
+  resetPuzzle() {
+    return {
+      colors: chunk(shuffle(colors), chunkSize)[0],
+      answer: Math.floor(Math.random() * chunkSize),
+    }
+  }
+
+  handleSelected(color) {
+    if (this.state.colors.indexOf(color) === this.state.answer)
+      this.setState({ score: this.state.score += 1 })
+
+    this.setState({ ...this.resetPuzzle() })
+  }
+
+  answerStyle(color) {
+    return {
+      fontSize: 65,
+      color: this.state.colors[this.state.answer],
+      marginBottom: 50
     }
   }
 
@@ -20,9 +45,13 @@ export default class ChooseColors extends React.Component {
     const randColor = Math.floor(Math.random() * this.state.colors.length)
     return (
       <View style={styles.wrapper}>
-        <Text style={{fontSize: 25, color: this.state.colors[this.state.answer]}}>
-          {this.state.colors[randColor]}
-        </Text> 
+        <Text style={this.answerStyle()}>
+          {this.state.colors[randColor].toUpperCase()}
+        </Text>
+        <Answers 
+          answers={this.state.colors} 
+          selected={this.handleSelected}
+        />
       </View>
     )
   }

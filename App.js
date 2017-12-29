@@ -29,15 +29,14 @@ export default class App extends React.Component {
 
   render() {
     return(
-      <Swiper showsButtons={false} ref={(ref) => {this.swiper = ref}}>
-        {questions.map(x => 
-          <Question 
-            key={x.id}
-            question={x}
-            addScore={this.addScore}
-          />)}
-      </Swiper>
+      /*<Swiper showsButtons={false} ref={(ref) => {this.swiper = ref}}>*/
+        <Question 
+          key={questions[0].id}
+          question={questions[0]}
+          addScore={this.addScore}
+        />
     )
+      /*</Swiper>*/
   }
 }
 

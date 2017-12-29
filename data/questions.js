@@ -1,8 +1,8 @@
 export default [
   {
     id: 0,
-    text: 'Solve as many questions as possible.',
-    tag: 'BasicMath'
+    text: 'Select the correct answer',
+    tag: 'Scramble'
   },
   {
     id: 1,

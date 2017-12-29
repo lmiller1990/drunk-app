@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, TouchableHighlight } from 'react-native'
 import { chunk, shuffle, random } from 'lodash'
 import * as util from './util'
 
-const ANSWERS = 9
+const ANSWERS = 6
 const MAX_NUMBER = 10
 
 export default class BasicMath extends Component {
@@ -26,16 +26,17 @@ export default class BasicMath extends Component {
 
   addScoreAndReset(num) {
     if (num === this.state.answer) {
-      // this.props.addScore(1)
+      this.props.addScore(1)
     }
     requestAnimationFrame(() => {
-      console.log('Reset')
       this.reset()
     })
   }
 
+  included(arr, num) {
+  }
+
   reset() {
-    console.log('iters', this.state.i)
     // init some values
     const randBin = util.getRandomBin()
     const randOps = util.getOperands(randBin)
@@ -49,13 +50,16 @@ export default class BasicMath extends Component {
 
     // populate some random answers
     for (let i = 0; i < ANSWERS - 1; i++) {
-      const r = random(0 - answer, 0 + answer)
-      tiles.push({ key: i, num: r })
+      let num = random(0 - answer, 0 + answer)
+
+      while (tiles.findIndex(x => x.num === num) !== -1) {
+        num = random(0 - answer, 0 + answer)
+      }
+      tiles.push({ key: i, num })
     }
-    console.log(tiles)
 
     this.setState({
-      tiles,
+      tiles: shuffle(tiles),
       answer,
       question,
       i: this.state.i += 1
@@ -76,11 +80,11 @@ export default class BasicMath extends Component {
               key={x.key}
               onPress={() => this.addScoreAndReset(x)}
             >
-              <Text
-                style={styles.numberTile}
-              >
-                {x.num.toString()}
-              </Text>
+              <View style={styles.numberTile}>
+                <Text style={styles.text}>
+                  {x.num.toString()}
+                </Text>
+              </View>
             </TouchableHighlight>
           ) }
         </View>
@@ -103,11 +107,15 @@ const styles = StyleSheet.create({
   questionText: {
     fontSize: 35
   },
-  numberTile: {
+  text: {
+    textAlign: 'center',
     backgroundColor: 'black',
+    fontSize: 45,
     color: 'white',
     height: 100,
     width: 100,
+  },
+  numberTile: {
     margin: 2
   }
 })

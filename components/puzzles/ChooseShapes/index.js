@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableHighlight } from 'react-native'
 import Shape from './Shape'
-import { random } from 'lodash'
+import { random, shuffle } from 'lodash'
 import COLORS from '../ChooseTheColor/colors'
 
 const TOTAL_ANSWERS = 9
@@ -16,17 +16,21 @@ export default class ChooseShapes extends Component {
     super(props)
 
     this.state = {
-      answers: []
+      answers: [],
+      answer: {},
+      allCombinations: this.getAllCombinations()
     }
+    this.handlePressed = this.handlePressed.bind(this)
     this.init = this.init.bind(this)
   }
   
   componentDidMount() {
+    this.getAllCombinations()
     this.init()
   }
 
-  init() {
-    const all = []
+  getAllCombinations() {
+    let all = []
     let key = 0
     for (let i = 0; i < COLORS.length; i++) {
       for (let j = 0; j < SHAPES.length; j++) {
@@ -34,32 +38,51 @@ export default class ChooseShapes extends Component {
         key += 1
       }
     }
+    return shuffle(all)
+  }
 
+  init() {
     let i = 0
-    const answers = []
+    const randNumbers = []
     while (i < TOTAL_ANSWERS) {
-      const rand = random(0, all.length - 1)
-      if (!answers.includes(rand)) {
-        answers.push(rand)
+      const rand = random(0, this.state.allCombinations.length - 1)
+      if (!randNumbers.includes(rand)) {
+        randNumbers.push(rand)
         i += 1
       }
     }
+    const answers = randNumbers.map(x => this.state.allCombinations[x])
+    const answer = answers[random(0, answers.length - 1)]
     this.setState({ 
-      answer: random(0, TOTAL_ANSWERS),
-      answers: answers.map(x => all[x])
+      answers,
+      answer
     })
+  }
+
+  handlePressed(key) {
+    if (key === this.state.answer.key) {
+      this.props.addScore(1)
+    }
+    this.init()
   }
 
   render() {
     return (
-      <View style={styles.wrapper}>
-        {this.state.answers.map(x =>
-          <Shape
-            key={x.key}
-            answer={x}
-            selected={this.handleSelected}
-          />
-        )}
+      <View>
+        <View style={styles.questionWrapper}>
+          <Text style={styles.questionText}>
+            {`${this.state.answer.color} ${this.state.answer.shape}`}
+          </Text>
+        </View>
+        <View style={styles.wrapper}>
+          {this.state.answers.map(x =>
+            <Shape
+              key={x.key}
+              answer={x}
+              handlePressed={this.handlePressed}
+            />
+          )}
+        </View>
       </View>
     )
   }
@@ -71,6 +94,14 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'center'
+  },
+  questionText: {
+    fontSize: 25
+  },
+  questionWrapper: {
+    flex: 0,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 

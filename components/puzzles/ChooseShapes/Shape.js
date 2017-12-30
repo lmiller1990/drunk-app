@@ -14,7 +14,7 @@ export default class Shape extends React.Component {
     return(
       <View>
         <TouchableHighlight 
-          onPress={() => this.props.selected(this.props.answer.key)}
+          onPress={() => this.props.handlePressed(this.props.answer.key)}
         >
           <View 
             style={

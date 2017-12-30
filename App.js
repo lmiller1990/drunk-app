@@ -31,8 +31,8 @@ export default class App extends React.Component {
     return(
       /*<Swiper showsButtons={false} ref={(ref) => {this.swiper = ref}}>*/
         <Question 
-          key={questions[0].id}
-          question={questions[0]}
+          key={questions[2].id}
+          question={questions[2]}
           addScore={this.addScore}
         />
     )

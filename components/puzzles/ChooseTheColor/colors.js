@@ -1,1 +1,11 @@
-export default ['red', 'blue', 'green', 'orange', 'purple', 'grey', 'black', 'brown']
+export default [
+  'red', 
+  'blue',
+  'green',
+  'orange',
+  'purple',
+  'grey',
+  'pink',
+  'black',
+  'brown'
+]

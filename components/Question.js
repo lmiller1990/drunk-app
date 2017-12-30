@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import BasicMath from './puzzles/basic-math/index'
 import ChooseTheColor from './puzzles/ChooseTheColor'
+import ChooseShapes from './puzzles/ChooseShapes'
 import Scramble from './Scramble'
 
 export default class Question extends React.Component {
@@ -9,7 +10,8 @@ export default class Question extends React.Component {
     const puzzles = {
       BasicMath,
       ChooseTheColor,
-      Scramble
+      Scramble,
+      ChooseShapes
     }
 
     const Puzzle = puzzles[this.props.question.tag]

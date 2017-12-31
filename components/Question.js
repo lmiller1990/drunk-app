@@ -1,27 +1,26 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import BasicMath from './puzzles/basic-math/index'
+import { StyleSheet, Text, View, Dimensions } from 'react-native'
 import ChooseTheColor from './puzzles/ChooseTheColor'
 import ChooseShapes from './puzzles/ChooseShapes'
-import Scramble from './Scramble'
+import BasicMath from './BasicMath'
 
 export default class Question extends React.Component {
   render() {
     const puzzles = {
-      BasicMath,
       ChooseTheColor,
-      Scramble,
+      BasicMath,
       ChooseShapes
     }
 
     const Puzzle = puzzles[this.props.question.tag]
     const el = <Puzzle addScore={this.props.addScore} />
+    const { width } = Dimensions.get('window')
     return (
-      <View style={styles.wrapper}>
+      <View style={{ width }}>
         <View>
           <Text style={styles.question}>{this.props.question.text}</Text>
         </View>
-        <View style={styles.container}>
+        <View>
           {el}
         </View>
       </View>
@@ -30,11 +29,6 @@ export default class Question extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: 'space-around',
-    alignItems: 'center'
-  },
   question: {
     fontSize: 35
   }

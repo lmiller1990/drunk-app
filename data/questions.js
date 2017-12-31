@@ -2,7 +2,7 @@ export default [
   {
     id: 0,
     text: 'Select the correct answer',
-    tag: 'Scramble'
+    tag: 'BasicMath'
   },
   {
     id: 1,

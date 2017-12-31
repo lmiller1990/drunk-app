@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableHighlight, Button } from 'react-native'
 import { random, shuffle } from 'lodash'
 
-export default class ImageAnswers extends Component {
+export default class BasicMath extends Component {
   constructor(props) {
     super(props)
 
@@ -14,6 +14,8 @@ export default class ImageAnswers extends Component {
       answer,
       answers: this.seedAnswers(answer)
     }
+
+    this.increment = this.increment.bind(this)
   }
 
   seedAnswers(actual) {
@@ -37,7 +39,10 @@ export default class ImageAnswers extends Component {
     return `${randomA} ${randomB < 0 ? ' - ' : ' + '} ${Math.abs(randomB)}`
   }
 
-  increment() {
+  increment(selected) {
+    if (selected.num === this.state.answer) {
+      this.props.addScore(1)
+    }
     const question = this.seedQuestion()
     const answer = eval(question)
     const answers = this.seedAnswers(answer)
@@ -61,7 +66,7 @@ export default class ImageAnswers extends Component {
           {this.state.answers.map(x => 
             <TouchableHighlight 
               key={x.key}
-              onPress={() => this.increment()}
+              onPress={() => this.increment(x)}
             >
               <Text style={styles.answer}>
                 {x.num}
